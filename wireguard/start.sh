@@ -539,5 +539,5 @@ echo "$expires_at" > $pf_filepath/expires_at
 # Final script will bind/refresh the port.  Run it with
 # cron every 15 minutes so PIA doesn't delete port
 # forwarding.  However it will still expire in 2 months.
-exec /bin/bash /etc/qbittorrent/start.sh
+exec /bin/bash /etc/qbittorrent/iptables.sh
 

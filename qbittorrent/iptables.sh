@@ -5,7 +5,7 @@ DEBUG=false
 
 # Wait until tunnel is up
 while : ; do
-	tunnelstat=$(netstat -ie | grep -E "tun|tap")
+	tunnelstat=$(netstat -ie | grep -E "pia")
 	if [[ ! -z "${tunnelstat}" ]]; then
 		break
 	else

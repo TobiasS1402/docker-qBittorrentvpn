@@ -302,24 +302,6 @@ then
 fi
 MULTILINE-COMMENT
 
-# Check if the mandatory environment variables are set.
-if [[ ! $WG_SERVER_IP || ! $WG_HOSTNAME || ! $PIA_TOKEN ]]; then
-  echo This script requires 3 env vars:
-  echo WG_SERVER_IP - IP that you want to connect to
-  echo WG_HOSTNAME  - name of the server, required for ssl
-  echo PIA_TOKEN    - your authentication token
-  echo
-  echo You can also specify optional env vars:
-  echo "PIA_PF                - enable port forwarding"
-  echo "PAYLOAD_AND_SIGNATURE - In case you already have a port."
-  echo
-  echo An easy solution is to just run get_region_and_token.sh
-  echo as it will guide you through getting the best server and
-  echo also a token. Detailed information can be found here:
-  echo https://github.com/pia-foss/manual-connections
-  exit 1
-fi
-
 # Create ephemeral wireguard keys, that we don't need to save to disk.
 privKey="$(wg genkey)"
 export privKey
@@ -564,5 +546,5 @@ echo "$expires_at" > $pf_filepath/expires_at
 # Final script will bind/refresh the port.  Run it with
 # cron every 15 minutes so PIA doesn't delete port
 # forwarding.  However it will still expire in 2 months.
-./refresh_pia_port.sh
+exec /bin/bash /etc/qbittorrent/start.sh
 

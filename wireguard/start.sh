@@ -214,7 +214,7 @@ so we will also use a meta service to get a new VPN token."
 echo "Trying to get a new token by authenticating with the meta service..."
 generateTokenResponse=$(curl -s -u "$PIA_USER:$PIA_PASS" \
   --connect-to "$bestServer_meta_hostname::$bestServer_meta_IP:" \
-  --cacert "ca.rsa.4096.crt" \
+  --cacert "/etc/ssl/certs/ca.rsa.4096.crt" \
   "https://$bestServer_meta_hostname/authv3/generateToken")
 echo "$generateTokenResponse"
 
@@ -326,7 +326,7 @@ export pubKey
 echo Trying to connect to the PIA WireGuard API on $WG_SERVER_IP...
 wireguard_json="$(curl -s -G \
   --connect-to "$WG_HOSTNAME::$WG_SERVER_IP:" \
-  --cacert "ca.rsa.4096.crt" \
+  --cacert "/etc/ssl/certs/ca.rsa.4096.crt" \
   --data-urlencode "pt=${PIA_TOKEN}" \
   --data-urlencode "pubkey=$pubKey" \
   "https://${WG_HOSTNAME}:1337/addKey" )"
@@ -505,7 +505,7 @@ if [[ ! $PAYLOAD_AND_SIGNATURE ]]; then
   echo "Getting new signature..."
   payload_and_signature="$(curl -s -m 5 \
     --connect-to "$PF_HOSTNAME::$PF_GATEWAY:" \
-    --cacert "ca.rsa.4096.crt" \
+    --cacert "/etc/ssl/certs/ca.rsa.4096.crt" \
     -G --data-urlencode "token=${PIA_TOKEN}" \
     "https://${PF_HOSTNAME}:19999/getSignature")"
 else
@@ -555,6 +555,5 @@ echo "$expires_at" > $pf_filepath/expires_at
 # Final script will bind/refresh the port.  Run it with
 # cron every 15 minutes so PIA doesn't delete port
 # forwarding.  However it will still expire in 2 months.
-
 ./refresh_pia_port.sh
 

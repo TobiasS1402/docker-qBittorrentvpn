@@ -155,7 +155,7 @@ so we will also use a meta service to get a new VPN token."
 echo "Trying to get a new token by authenticating with the meta service..."
 generateTokenResponse=$(curl -s -u "$PIA_USER:$PIA_PASS" \
   --connect-to "$bestServer_meta_hostname::$bestServer_meta_IP:" \
-  --cacert "ca.rsa.4096.crt" \
+  --cacert "/etc/ssl/certs/ca.rsa.4096.crt" \
   "https://$bestServer_meta_hostname/authv3/generateToken")
 echo "$generateTokenResponse"
 

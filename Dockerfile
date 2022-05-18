@@ -35,4 +35,4 @@ EXPOSE 8080
 EXPOSE 8999
 EXPOSE 8999/udp
 
-CMD ["/bin/bash", "/etc/wireguard/start.sh && cron"]
+CMD ["/bin/bash", "/etc/wireguard/start.sh"]

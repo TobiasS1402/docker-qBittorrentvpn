@@ -41,7 +41,7 @@ printf "\nTrying to bind the port . . . \n"
 # will just delete the port forwarding if you don't send keepalives.
 
   bind_port_response="$(curl -sGk -m 5 \
-    --cacert "/manual-connections/ca.rsa.4096.crt" \
+    --cacert "/etc/ssl/certs/ca.rsa.4096.crt" \
     --data-urlencode "payload=${payload}" \
     --data-urlencode "signature=${signature}" \
     "https://${PF_GATEWAY}:19999/bindPort")"

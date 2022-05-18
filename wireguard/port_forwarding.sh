@@ -132,4 +132,4 @@ echo "$expires_at" > $pf_filepath/expires_at
 # cron every 15 minutes so PIA doesn't delete port
 # forwarding.  However it will still expire in 2 months.
 
-./refresh_pia_port.sh
+#./refresh_pia_port.sh

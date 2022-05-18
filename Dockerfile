@@ -1,4 +1,4 @@
-# qBittorrent and OpenVPN
+# qBittorrent and WireGuard
 #
 # Version 1.8
 
@@ -18,17 +18,17 @@ RUN apt-get update \
     && apt-get install -y software-properties-common \
     && add-apt-repository ppa:qbittorrent-team/qbittorrent-stable \
     && apt-get update \
-    && apt-get install -y qbittorrent-nox openvpn curl moreutils net-tools dos2unix kmod iptables ipcalc unrar curl jq wireguard-go base64\
+    && apt-get install -y qbittorrent-nox curl moreutils net-tools dos2unix kmod iptables ipcalc unrar jq wireguard \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Add configuration and scripts
-ADD openvpn/ /etc/openvpn/
+ADD wireguard/ /etc/wireguard/
 ADD qbittorrent/ /etc/qbittorrent/
 
-RUN chmod +x /etc/qbittorrent/*.sh /etc/qbittorrent/*.init /etc/openvpn/*.sh
+RUN chmod +x /etc/qbittorrent/*.sh /etc/qbittorrent/*.init /etc/wireguard/*.sh
 
 # Expose ports and run
 EXPOSE 8080
 EXPOSE 8999
 EXPOSE 8999/udp
-CMD ["/bin/bash", "/etc/openvpn/start.sh"]
+CMD ["/bin/bash", "/etc/wireguard/start.sh"]

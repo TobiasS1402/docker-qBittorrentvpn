@@ -237,6 +237,8 @@ if [ "$PIA_PF" != true ]; then
   PIA_PF="false"
 fi
 
+echo $ PIA_TOKEN=\"$token\" WG_SERVER_IP=$bestServer_WG_IP \
+  WG_HOSTNAME=$bestServer_WG_hostname 
 
 #!/usr/local/bin/bash
 # Copyright (C) 2020 Private Internet Access, Inc.

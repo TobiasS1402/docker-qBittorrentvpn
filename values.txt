@@ -1,0 +1,5 @@
+PIA_USER =
+PIA_PASS = 
+PIA_PF = True
+QBIT_USER = 
+QBIT_PASS = 

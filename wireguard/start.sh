@@ -245,7 +245,10 @@ echo $ PIA_TOKEN=\"$token\" \\
 echo WG_SERVER_IP=$bestServer_WG_IP WG_HOSTNAME=$bestServer_WG_hostname \\
 echo PIA_PF=$PIA_PF ./connect_to_wireguard_with_token.sh
 echo PIA_PF=$PIA_PF PIA_TOKEN="$token" WG_SERVER_IP=$bestServer_WG_IP WG_HOSTNAME=$bestServer_WG_hostname
-
+PIA_PF=$PIA_PF
+PIA_TOKEN="$token"
+WG_SERVER_IP=$bestServer_WG_IP
+WG_HOSTNAME=$bestServer_WG_hostname
 
 #!/usr/local/bin/bash
 # Copyright (C) 2020 Private Internet Access, Inc.
@@ -380,16 +383,6 @@ At this point, internet should work via VPN.
 $ wg-quick down pia"
 
 # This section will stop the script if PIA_PF is not set to "true".
-if [ "$PIA_PF" != true ]; then
-  echo
-  echo If you want to also enable port forwarding, please start the script
-  echo with the env var PIA_PF=true. Example:
-  echo $ WG_SERVER_IP=10.0.0.3 WG_HOSTNAME=piaserver401 \
-    PIA_TOKEN=\"\$token\" PIA_PF=true \
-    ./connect_to_wireguard_with_token.sh
-  exit
-fi
-
 echo -n "
 #This script got started with PIA_PF=true. We will allow WireGuard to fully
 #initialize and after that we will try to enable PF by running the following

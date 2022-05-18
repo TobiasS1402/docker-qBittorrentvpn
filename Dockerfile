@@ -18,7 +18,7 @@ RUN apt-get update \
     && apt-get install -y software-properties-common \
     && add-apt-repository ppa:qbittorrent-team/qbittorrent-stable \
     && apt-get update \
-    && apt-get install -y qbittorrent-nox curl moreutils net-tools dos2unix kmod iptables ipcalc unrar jq wireguard openssl cron \
+    && apt-get install -y qbittorrent-nox curl moreutils net-tools dos2unix kmod iptables ipcalc unrar jq wireguard openssl cron iproute2 \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Add configuration and scripts
